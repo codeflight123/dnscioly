@@ -8,15 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── Timeline ── */
+    /* Timeline */
     .timeline-wrap {
       position: relative;
       max-width: 900px;
       margin: 0 auto 5rem;
       padding: 2rem 0;
     }
-
-    /* Central spine */
     .timeline-wrap::before {
       content: '';
       position: absolute;
@@ -26,7 +24,6 @@
       background: linear-gradient(to bottom, transparent, var(--teal) 8%, var(--teal) 92%, transparent);
       transform: translateX(-50%);
     }
-
     .tl-item {
       display: flex;
       justify-content: flex-end;
@@ -34,14 +31,11 @@
       margin-bottom: 2.5rem;
       position: relative;
     }
-
     .tl-item.right {
       justify-content: flex-start;
       padding-right: 0;
       padding-left: calc(50% + 2.5rem);
     }
-
-    /* Dot on spine */
     .tl-item::after {
       content: '';
       position: absolute;
@@ -55,84 +49,74 @@
       box-shadow: 0 0 10px rgba(78,205,196,0.4);
       z-index: 2;
     }
-
     .tl-item.milestone::after {
       width: 20px; height: 20px;
       background: var(--teal);
       box-shadow: 0 0 20px rgba(78,205,196,0.6);
       top: 1rem;
     }
-
     .tl-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.3rem 1.6rem;
-      max-width: 340px;
+      max-width: 360px;
       width: 100%;
       transition: border-color 0.2s, transform 0.2s;
     }
-
-    .tl-card:hover {
-      border-color: var(--teal);
-    }
-
+    .tl-card:hover { border-color: var(--teal); }
     .tl-item:not(.right) .tl-card:hover { transform: translateX(-4px); }
-    .tl-item.right .tl-card:hover       { transform: translateX(4px); }
-
+    .tl-item.right .tl-card:hover { transform: translateX(4px); }
     .tl-card.milestone-card {
       border-color: rgba(78,205,196,0.4);
       background: linear-gradient(135deg, var(--bg-card), rgba(78,205,196,0.06));
     }
-
+    .tl-card.state-card {
+      border-color: rgba(247,200,74,0.4);
+      background: linear-gradient(135deg, var(--bg-card), rgba(247,200,74,0.04));
+    }
     .tl-date {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--teal);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
       letter-spacing: 0.04em;
     }
-
+    .tl-date.gold { color: #f7c84a; }
     .tl-title {
       font-family: var(--font-display);
       font-size: 0.85rem;
       color: var(--text);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       margin-bottom: 0.4rem;
     }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
 
-    .tl-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .tl-badge {
-      display: inline-block;
-      margin-top: 0.6rem;
-      font-size: 0.67rem;
+    /* Result pill */
+    .tl-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
       font-family: var(--font-display);
-      letter-spacing: 0.1em;
-      padding: 0.18rem 0.65rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.85rem;
       border-radius: 20px;
-      border: 1px solid var(--border);
-      color: var(--teal);
     }
+    .result-inv    { background: rgba(78,205,196,0.1);  border: 1px solid rgba(78,205,196,0.3); color: var(--teal); }
+    .result-reg    { background: rgba(111,163,247,0.1); border: 1px solid rgba(111,163,247,0.3); color: #6fa3f7; }
+    .result-state  { background: rgba(247,200,74,0.1);  border: 1px solid rgba(247,200,74,0.3);  color: #f7c84a; }
+    .result-admin  { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); color: #a78bfa; }
 
-    .tl-badge.inv    { color: var(--teal);  border-color: rgba(78,205,196,0.3); }
-    .tl-badge.reg    { color: #6fa3f7;      border-color: rgba(111,163,247,0.3); background: rgba(111,163,247,0.06); }
-    .tl-badge.state  { color: #f7c84a;      border-color: rgba(247,200,74,0.3);  background: rgba(247,200,74,0.06); }
-    .tl-badge.admin  { color: #a78bfa;      border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.06); }
-
-    /* Season overview cards (kept simple) */
+    /* Overview */
     .overview-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-bottom: 5rem;
     }
-
     .overview-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -146,24 +130,35 @@
     .overview-card h3 { font-family: var(--font-display); font-size: 1rem; color: var(--teal); margin-bottom: 0.5rem; }
     .overview-card p  { font-size: 0.9rem; color: var(--text-muted); }
 
-    /* Mobile timeline */
+    /* Season summary banner */
+    .season-summary {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      background: linear-gradient(135deg, rgba(78,205,196,0.08), rgba(78,205,196,0.03));
+      border: 1px solid rgba(78,205,196,0.25);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .sum-stat .num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .sum-stat .num.gold { color: #f7c84a; }
+    .sum-stat .label { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 0.2rem; }
+
     @media (max-width: 700px) {
       .timeline-wrap::before { left: 20px; }
-
-      .tl-item,
-      .tl-item.right {
-        padding-left: 52px;
-        padding-right: 0;
-        justify-content: flex-start;
-      }
-
-      .tl-item::after,
-      .tl-item.right::after {
-        left: 20px;
-      }
-
+      .tl-item, .tl-item.right { padding-left: 52px; padding-right: 0; justify-content: flex-start; }
+      .tl-item::after, .tl-item.right::after { left: 20px; }
       .tl-card { max-width: 100%; }
       .overview-cards { grid-template-columns: 1fr; }
+      .season-summary { grid-template-columns: repeat(2,1fr); }
     }
   </style>
 </head>
@@ -187,30 +182,50 @@
   <section class="page-hero">
     <div class="hero-bg"></div>
     <div class="page-hero-content fade-in delay-1">
-      <p class="section-tag">2024–2025 Season</p>
-      <h1 class="page-title">Competition &amp; <span class="teal">Schedule</span></h1>
-      <p class="page-sub">Our full season — from registration all the way to the State Championship.</p>
+      <p class="section-tag">2025–2026 Season</p>
+      <h1 class="page-title">Competition &amp; <span class="teal">Results</span></h1>
+      <p class="page-sub">Our full season journey — from Boyceville to the SoCal State Championship at Caltech.</p>
     </div>
   </section>
 
-  <!-- OVERVIEW -->
+  <!-- SEASON OVERVIEW -->
   <section class="section">
     <div class="section-inner">
       <div class="overview-cards fade-in">
         <div class="overview-card">
           <span class="overview-icon">🏁</span>
           <h3>Invitationals</h3>
-          <p>Unofficial warm-up tournaments to sharpen skills and experience competition conditions before the official season.</p>
+          <p>Warm-up tournaments across the country to prepare for the official season.</p>
         </div>
         <div class="overview-card">
           <span class="overview-icon">📍</span>
           <h3>Regionals</h3>
-          <p>The first official tournament of the season. Top-placing teams advance to the State Championship.</p>
+          <p>The official qualifying tournament. Top teams advance to the State Championship.</p>
         </div>
         <div class="overview-card">
           <span class="overview-icon">🏆</span>
           <h3>State</h3>
-          <p>The pinnacle of the season — the best teams in California compete for the state title.</p>
+          <p>The best teams in Southern California compete for the state title at Caltech.</p>
+        </div>
+      </div>
+
+      <!-- SEASON STATS -->
+      <div class="season-summary fade-in delay-1">
+        <div class="sum-stat">
+          <div class="num">3</div>
+          <div class="label">Invitationals</div>
+        </div>
+        <div class="sum-stat">
+          <div class="num">2nd</div>
+          <div class="label">Regionals Place</div>
+        </div>
+        <div class="sum-stat">
+          <div class="num gold">7th</div>
+          <div class="label">State Place</div>
+        </div>
+        <div class="sum-stat">
+          <div class="num">32</div>
+          <div class="label">Teams at State</div>
         </div>
       </div>
 
@@ -221,103 +236,53 @@
 
       <div class="timeline-wrap">
 
-        <!-- 8/29 Registration Opens -->
+        <!-- Boyceville Satellite -->
         <div class="tl-item fade-in">
           <div class="tl-card">
-            <p class="tl-date">Aug 29</p>
-            <p class="tl-title">Registration Opens</p>
-            <p class="tl-desc">Sign-ups open for the 2024–2025 Science Olympiad season.</p>
-            <span class="tl-badge admin">Admin</span>
+            <p class="tl-date">Dec 1 – Dec 6, 2025</p>
+            <p class="tl-title">Boyceville Satellite Invitational</p>
+            <p class="tl-desc">Our season opener — a massive online invitational run by Boyceville with 300 teams nationwide. A great first look at the competition landscape.</p>
+            <span class="tl-result result-inv">🏁 Invitational · Online</span>
           </div>
         </div>
 
-        <!-- 9/6 Registration Closes -->
+        <!-- USC -->
         <div class="tl-item right fade-in delay-1">
           <div class="tl-card">
-            <p class="tl-date">Sep 6</p>
-            <p class="tl-title">Registration Closes</p>
-            <p class="tl-desc">Last day to register for the season.</p>
-            <span class="tl-badge admin">Admin</span>
-          </div>
-        </div>
-
-        <!-- 9/8 Classes Begin -->
-        <div class="tl-item fade-in delay-2">
-          <div class="tl-card">
-            <p class="tl-date">Sep 8</p>
-            <p class="tl-title">Classes Begin</p>
-            <p class="tl-desc">Event study sessions and team practices kick off for the new season.</p>
-            <span class="tl-badge admin">Admin</span>
-          </div>
-        </div>
-
-        <!-- 10/21–10/27 Tryout Tests -->
-        <div class="tl-item right fade-in delay-1">
-          <div class="tl-card">
-            <p class="tl-date">Oct 21 – Oct 27</p>
-            <p class="tl-title">Tryout Tests</p>
-            <p class="tl-desc">Members complete tryout assessments to determine team placement across all 6 squads.</p>
-            <span class="tl-badge admin">Admin</span>
-          </div>
-        </div>
-
-        <!-- 11/3 Teams Formed -->
-        <div class="tl-item fade-in">
-          <div class="tl-card">
-            <p class="tl-date">Nov 3</p>
-            <p class="tl-title">Teams Formed</p>
-            <p class="tl-desc">Final team rosters announced. Event assignments locked in for all 6 teams.</p>
-            <span class="tl-badge admin">Admin</span>
-          </div>
-        </div>
-
-        <!-- 12/1–12/6 Boyceville -->
-        <div class="tl-item right fade-in delay-1">
-          <div class="tl-card">
-            <p class="tl-date">Dec 1 – Dec 6</p>
-            <p class="tl-title">Boyceville Invitational</p>
-            <p class="tl-desc">Our first invitational of the season — a great warm-up opportunity before the official competition circuit begins.</p>
-            <span class="tl-badge inv">Invitational</span>
-          </div>
-        </div>
-
-        <!-- 1/17 USC -->
-        <div class="tl-item fade-in delay-2">
-          <div class="tl-card">
-            <p class="tl-date">Jan 17</p>
+            <p class="tl-date">Jan 17, 2026</p>
             <p class="tl-title">USC Invitational</p>
-            <p class="tl-desc">Competitive invitational hosted at the University of Southern California.</p>
-            <span class="tl-badge inv">Invitational</span>
+            <p class="tl-desc">One of the largest invitationals in the nation with 91 Div. C teams. Del Norte "Moto Moto" placed <strong style="color:var(--teal)">11th out of 91 teams</strong> at USC.</p>
+            <span class="tl-result result-inv">🏁 Invitational · 11th / 91</span>
           </div>
         </div>
 
-        <!-- 2/21 UCSD -->
-        <div class="tl-item right fade-in delay-1">
+        <!-- Triton / UCSD -->
+        <div class="tl-item fade-in delay-2">
           <div class="tl-card">
-            <p class="tl-date">Feb 21</p>
-            <p class="tl-title">UCSD Invitational</p>
-            <p class="tl-desc">Final warm-up invitational before regionals, hosted at UC San Diego.</p>
-            <span class="tl-badge inv">Invitational</span>
+            <p class="tl-date">Feb 21, 2026</p>
+            <p class="tl-title">Triton Invitational (UCSD)</p>
+            <p class="tl-desc">Hosted at UC San Diego, our final warm-up before Regionals. Del Norte A placed <strong style="color:var(--teal)">5th out of 41 teams</strong> — a strong performance heading into the official season.</p>
+            <span class="tl-result result-inv">🏁 Invitational · 5th / 41</span>
           </div>
         </div>
 
-        <!-- 2/28 Regionals -->
-        <div class="tl-item milestone fade-in delay-2">
-          <div class="tl-card milestone-card">
-            <p class="tl-date">Feb 28</p>
-            <p class="tl-title">Regional Championship</p>
-            <p class="tl-desc">The first official tournament of the season. Top teams advance to the State Championship.</p>
-            <span class="tl-badge reg">Regionals</span>
-          </div>
-        </div>
-
-        <!-- 4/11 State -->
+        <!-- REGIONALS -->
         <div class="tl-item right milestone fade-in delay-1">
-          <div class="tl-card milestone-card" style="border-color:rgba(247,200,74,0.4); background:linear-gradient(135deg,var(--bg-card),rgba(247,200,74,0.04))">
-            <p class="tl-date" style="color:#f7c84a">Apr 11</p>
-            <p class="tl-title">🏆 State Championship</p>
-            <p class="tl-desc">The pinnacle of the season. DNSO competes against the top Science Olympiad teams across California.</p>
-            <span class="tl-badge state">State</span>
+          <div class="tl-card milestone-card">
+            <p class="tl-date">Feb 28, 2026</p>
+            <p class="tl-title">San Diego Regional Championship</p>
+            <p class="tl-desc">The official qualifying tournament held at University of San Diego. Del Norte "Moto Moto" finished <strong style="color:var(--teal)">2nd out of 62 teams</strong>, punching our ticket to the State Championship!</p>
+            <span class="tl-result result-reg">📍 Regionals · 2nd / 62 ✧ State Qualifier</span>
+          </div>
+        </div>
+
+        <!-- STATE -->
+        <div class="tl-item milestone fade-in delay-2">
+          <div class="tl-card state-card">
+            <p class="tl-date gold">Apr 11, 2026</p>
+            <p class="tl-title">🏆 SoCal State Championship @ Caltech</p>
+            <p class="tl-desc">The pinnacle of our season — held at California Institute of Technology with 32 of the top teams in Southern California. Del Norte placed <strong style="color:#f7c84a">7th out of 32 teams</strong>. An incredible finish to the year.</p>
+            <span class="tl-result result-state">🏆 State Championship · 7th / 32</span>
           </div>
         </div>
 
@@ -335,7 +300,7 @@
         <a href="leadership.html">Leadership</a>
         <a href="social.html">Social</a>
       </div>
-      <p class="footer-copy">© 2025 DNSO Science Olympiad. All rights reserved.</p>
+      <p class="footer-copy">© 2026 DNSO Science Olympiad. All rights reserved.</p>
     </div>
   </footer>
 
